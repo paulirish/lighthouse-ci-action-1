@@ -12,7 +12,7 @@ async function main() {
 
   core.startGroup('Posting a check')
   // post github check
-  github.run()
+  await github.run()
   core.endGroup()
 
   /*******************************COLLECTING***********************************/

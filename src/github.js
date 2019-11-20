@@ -8,7 +8,7 @@ async function run() {
 
   const octokit = new github.GitHub(myToken)
 
-  const check = octokit.checks.create({
+  const check = await octokit.checks.create({
     owner: process.env.GITHUB_REPOSITORY.split('/')[0],
     repo: process.env.GITHUB_REPOSITORY.split('/')[1],
     head_sha: process.env.GITHUB_SHA,
@@ -31,7 +31,7 @@ really fine stuff.
     }
   })
 
-  console.log(check)
+  console.log({check})
 
 
   const status = await octokit.repos.getCombinedStatusForRef({
@@ -39,7 +39,7 @@ really fine stuff.
     repo: process.env.GITHUB_REPOSITORY.split('/')[1],
     ref: process.env.GITHUB_SHA,
   });
-  console.log(status);
+  console.log({status});
 }
 
 module.exports = {
