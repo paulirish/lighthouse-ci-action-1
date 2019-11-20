@@ -8,7 +8,7 @@ async function run() {
 
   const octokit = new github.GitHub(myToken)
 
-  const check = await octokit.checks.create({
+  const checkBody = {
     owner: process.env.GITHUB_REPOSITORY.split('/')[0],
     repo: process.env.GITHUB_REPOSITORY.split('/')[1],
     head_sha: process.env.GITHUB_SHA,
@@ -64,7 +64,15 @@ really fine stuff.
         }
       ]
     }
+  };
+
+  const checkSuite = await octokit.checks.createSuite({
+    owner: process.env.GITHUB_REPOSITORY.split('/')[0],
+    repo: process.env.GITHUB_REPOSITORY.split('/')[1],
+    head_sha: process.env.GITHUB_SHA,
   })
+  await octokit.checks.create(checkBody);
+  await octokit.checks.create({...checkBody, name: 'LH REPORT2'});
 }
 
 module.exports = {
