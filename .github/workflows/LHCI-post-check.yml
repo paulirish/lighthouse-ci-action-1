@@ -1,4 +1,5 @@
-name: LHCI-post-check
+name: LHCI-assert-on-budget
+on: push
 jobs:
   # This posts a check
   assert-on-budget:
