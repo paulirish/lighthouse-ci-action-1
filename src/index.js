@@ -9,10 +9,10 @@ async function main() {
   core.startGroup('Action config')
   console.log('Input args:', input)
   core.endGroup() // Action config
-  
+
   core.startGroup('Posting a check')
   // post github check
-  github.postCheck();
+  github.postCheck()
   core.endGroup()
 
   /*******************************COLLECTING***********************************/
