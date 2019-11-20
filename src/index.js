@@ -9,6 +9,11 @@ async function main() {
   core.startGroup('Action config')
   console.log('Input args:', input)
   core.endGroup() // Action config
+  
+  core.startGroup('Posting a check')
+  // post github check
+  github.postCheck();
+  core.endGroup()
 
   /*******************************COLLECTING***********************************/
   core.startGroup(`Collecting`)
@@ -80,8 +85,8 @@ async function main() {
   }
   // set results path
   core.setOutput('resultsPath', '.lighthouserc')
-  // post github check
-  github.postCheck();
+  // // post github check
+  // github.postCheck();
 }
 
 // run `main()`
