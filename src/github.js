@@ -1,7 +1,7 @@
 const github = require('@actions/github')
 const core = require('@actions/core')
 
-async function run() {
+export async function run() {
   // ghtoken: ${{ secrets.GITHUB_TOKEN }}
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token
   const myToken = core.getInput('ghtoken')
@@ -41,5 +41,3 @@ really fine stuff.
   });
   console.log(status);
 }
-
-run()

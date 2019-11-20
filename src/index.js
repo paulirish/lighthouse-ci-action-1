@@ -12,7 +12,7 @@ async function main() {
 
   core.startGroup('Posting a check')
   // post github check
-  github.postCheck()
+  github.run()
   core.endGroup()
 
   /*******************************COLLECTING***********************************/
@@ -86,7 +86,7 @@ async function main() {
   // set results path
   core.setOutput('resultsPath', '.lighthouserc')
   // // post github check
-  // github.postCheck();
+  // github.run();
 }
 
 // run `main()`
