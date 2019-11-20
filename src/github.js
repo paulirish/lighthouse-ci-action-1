@@ -11,8 +11,8 @@ async function run() {
   const check = octokit.checks.create({
     owner: process.env.GITHUB_REPOSITORY.split('/')[0],
     repo: process.env.GITHUB_REPOSITORY.split('/')[1],
-    name: 'LH Report',
     head_sha: process.env.GITHUB_SHA,
+    name: 'LH Report',
     output: {
       title: 'whaddup title',
       summary: 'hey summary',
@@ -32,6 +32,14 @@ really fine stuff.
   })
 
   console.log(check)
+
+
+  const status = await octokit.repos.getCombinedStatusForRef({
+    owner: process.env.GITHUB_REPOSITORY.split('/')[0],
+    repo: process.env.GITHUB_REPOSITORY.split('/')[1],
+    ref: process.env.GITHUB_SHA,
+  });
+  console.log(status);
 }
 
 run()
