@@ -2,6 +2,7 @@ const core = require('@actions/core')
 const childProcess = require('child_process')
 const lhciCliPath = require.resolve('@lhci/cli/src/cli.js')
 const input = require('./input.js')
+const github = require('./github.js')
 
 // audit urls with Lighthouse CI
 async function main() {
@@ -79,6 +80,8 @@ async function main() {
   }
   // set results path
   core.setOutput('resultsPath', '.lighthouserc')
+  // post github check
+  github.postCheck();
 }
 
 // run `main()`
