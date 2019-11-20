@@ -13,6 +13,8 @@ async function run() {
     repo: process.env.GITHUB_REPOSITORY.split('/')[1],
     head_sha: process.env.GITHUB_SHA,
     name: 'LH Report',
+    status: 'completed',
+    conclusion: 'neutral',
     output: {
       title: 'whaddup title',
       summary: `
