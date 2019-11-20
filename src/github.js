@@ -30,18 +30,8 @@ really fine stuff.
       ]
     }
   })
-
-  console.log({check})
-
-
-  const status = await octokit.repos.listStatusesForRef({
-    owner: process.env.GITHUB_REPOSITORY.split('/')[0],
-    repo: process.env.GITHUB_REPOSITORY.split('/')[1],
-    ref: process.env.GITHUB_SHA,
-  });
-  console.log({status});
 }
 
 module.exports = {
-    run
-};
+  run
+}
