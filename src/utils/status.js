@@ -20,14 +20,12 @@ async function postStatus({sha}) {
   });
 
   console.log({response});
-
-  // .then((response) =>
-  //   response.ok === false
-  //     ? response.json().then((json) => {
-  //         throw new Error(`Response was not ok. Status: ${response.status}. Body: ${JSON.stringify(json)}`)
-  //       })
-  //     : Promise.resolve()
-  // )
+  if (!response.ok) {
+    const json = await response.json();
+    console.error(`Response was not ok. Status: ${response.status}. Body: ${JSON.stringify(json)}`);
+  } else {
+    console.log('Status posted ok!');
+  }
   return;
 }
 module.exports = { postStatus }
