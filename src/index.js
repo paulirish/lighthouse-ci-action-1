@@ -6,6 +6,7 @@ const lhciCliPath = require.resolve('@lhci/cli/src/cli')
 const { getInput, hasAssertConfig } = require('./config')
 const { uploadArtifacts } = require('./utils/artifacts')
 const { setFailedAnnotations } = require('./utils/annotations')
+const { postStatus } = require('./utils/status')
 
 /**
  * Audit urls with Lighthouse CI in 3 stages:
@@ -90,6 +91,8 @@ async function main() {
     core.endGroup() // Uploading
   }
 
+
+  await postStatus({sha: process.env.GITHUB_SHA});
   // set failing exit code for the action, and set annotations
   if (hasAssertFailed) {
     await setFailedAnnotations(resultsPath)
