@@ -1,13 +1,11 @@
-name: LHCI-static-dist-dir
+name: LHCI-status
 on: push
 jobs:
-  # This is a run that targets static files using static-dist-dir.
-  static-dist-dir:
+  post-status:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Run Lighthouse against a static dist dir
+      - name: We'll see...
         uses: ./
         with:
-          # no urls needed, since it uses local folder to scan .html files
-          configPath: '.github/lighthouse/lighthouserc-static-dist-dir.yml'
+          secretghtoken: ${{ secrets.GITHUB_TOKEN }}
