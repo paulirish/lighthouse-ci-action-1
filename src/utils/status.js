@@ -7,7 +7,7 @@ async function postStatus({sha}) {
 
   const statusPayload = {
     state: 'pending',
-    target_url: ' https://lhci-canary.herokuapp.com/app/projects/debugger-protocol-viewer/compare/b9fac0a9-7024-45ae-b4ee-854fd089f460?compareUrl=http%3A%2F%2Flocalhost%3APORT%2Fdevtools-protocol%2Ftot%2FPage%2F',
+    target_url: 'https://lhci-canary.herokuapp.com/app/projects/debugger-protocol-viewer/compare/b9fac0a9-7024-45ae-b4ee-854fd089f460?compareUrl=http%3A%2F%2Flocalhost%3APORT%2Fdevtools-protocol%2Ftot%2FPage%2F',
     description: 'What a great thing',
     context: 'LHCI server',
   };
