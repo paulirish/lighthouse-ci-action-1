@@ -1,9 +1,14 @@
 const fetch = require('node-fetch')
 const core = require('@actions/core')
+const { getLinksByUrl } = require('./lhci-helpers')
 
-async function postStatus({sha}) {
+
+// TODO: use runGithubStatusCheck() somehow? https://github.com/GoogleChrome/lighthouse-ci/blob/2015def21a190435e32227897ce36338055db88b/packages/cli/src/upload/upload.js#L196
+
+async function postStatus({sha, resultsPath}) {
 
   const token = core.getInput('secretghtoken');
+  const linksByUrl = await getLinksByUrl(resultsPath)
 
   const statusPayload = {
     state: 'pending',
@@ -14,8 +19,6 @@ async function postStatus({sha}) {
 
   const status_url = `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/statuses/${sha}`;
 
-  console.log({statusPayload, status_url});
-
   // https://developer.github.com/v3/repos/statuses/#create-a-status
   const response = await fetch(status_url, {
     method: 'POST',
@@ -25,13 +28,9 @@ async function postStatus({sha}) {
     body: JSON.stringify(statusPayload),
   });
 
-  console.log({response});
-  if (!response.ok) {
-    const json = await response.json();
-    console.error(`Response was not ok. Status: ${response.status}. Body: ${JSON.stringify(json)}`);
-  } else {
-    console.log('Status posted ok!');
-  }
-  return;
+  if (response.ok) return console.log('Status posted.');
+
+  const json = await response.json();
+  console.error(`Response was not ok. Status: ${response.status}. Body: ${JSON.stringify(json)}`);
 }
 module.exports = { postStatus }

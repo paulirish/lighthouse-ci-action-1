@@ -92,7 +92,7 @@ async function main() {
   }
 
 
-  await postStatus({sha: process.env.GITHUB_SHA});
+  await postStatus({resultsPath, sha: process.env.GITHUB_SHA});
   // set failing exit code for the action, and set annotations
   if (hasAssertFailed) {
     await setFailedAnnotations(resultsPath)
